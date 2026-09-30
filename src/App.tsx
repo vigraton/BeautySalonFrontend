@@ -1,6 +1,7 @@
 import { ArrowRight } from "lucide-react";
 import { ServiceCard } from "./components/ServiceCard";
 import { StylistCard } from "./components/StylistCard";
+import { Footer } from "./components/Footer";
 
 export default function App() {
   return (
@@ -48,6 +49,8 @@ export default function App() {
           </div>
         </div>
       </section>
+
+      <Footer />
     </div>
   );
 }
