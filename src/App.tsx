@@ -1,4 +1,7 @@
 import { ArrowRight } from "lucide-react";
+import { ServiceCard } from "./components/ServiceCard";
+import { StylistCard } from "./components/StylistCard";
+import { Footer } from "./components/Footer";
 
 export default function App() {
   return (
@@ -25,9 +28,29 @@ export default function App() {
       </div>
 
       <section className="bg-[#FCF8F1]">
-        <h3>Nosso menu</h3>
-        <h1>Serviços feitos para você</h1>
+        <div className="p-14">
+          <h3>Nosso menu</h3>
+          <h1>Serviços feitos para você</h1>
+
+          <div className="grid grid-cols-2 gap-4 mt-8 pr-20 pl-20">
+            <ServiceCard />
+            <ServiceCard />
+            <ServiceCard />
+            <ServiceCard />
+          </div>
+        </div>
+        <div className="h-150 w-full bg-[#F2EADD] flex flex-col items-center pt-8">
+          <h4>CONHEÇA NOSSO TIME</h4>
+          <h1>Quem você pode confiar</h1>
+          <div className="flex flex-row gap-4">
+            <StylistCard />
+            <StylistCard />
+            <StylistCard />
+          </div>
+        </div>
       </section>
+
+      <Footer />
     </div>
   );
 }
