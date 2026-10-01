@@ -1,12 +1,13 @@
 import { ArrowRight } from "lucide-react";
 import { ServiceCard } from "./components/ServiceCard";
 import { StylistCard } from "./components/StylistCard";
+import { Step1 } from "./Form/step1";
 import { Footer } from "./components/Footer";
 
 export default function App() {
   return (
     <div className="flex flex-col">
-      <div className="flex flex-col p-8 items-start gap-y-5 min-h-screen">
+      <div className="flex flex-col p-8 items-start gap-y-5 min-h-screen justify-center">
         <h3 className="flex flex-row gap-4 text-white">CABELO UNHAS PELE</h3>
         <div className="text-white">
           <h1>A arte de sentir bela</h1>
@@ -47,6 +48,10 @@ export default function App() {
             <StylistCard />
             <StylistCard />
           </div>
+        </div>
+
+        <div className="p-10 flex items-center justify-center ">
+          <Step1 />
         </div>
       </section>
 
