@@ -1,5 +1,7 @@
 import { Card } from "../../components/ui/card";
-import { Scissors, Footprints, Hand, Sparkles } from "lucide-react";
+import { Scissors, 
+  // Footprints, Hand, Sparkles 
+} from "lucide-react";
 
 // Quero criar um 'mode' para este primeiro card. Por exemplo, quando estiver no mode "form" fica como 
 // ServiceCardForm. E quando estiver no mode "default" fica como ServiceCard.7
