@@ -1,25 +1,26 @@
 import { Card } from "../../components/ui/card";
-import { Scissors, 
-  // Footprints, Hand, Sparkles 
+import {
+  Scissors,
+  // Footprints, Hand, Sparkles
 } from "lucide-react";
 
-// Quero criar um 'mode' para este primeiro card. Por exemplo, quando estiver no mode "form" fica como 
-// ServiceCardForm. E quando estiver no mode "default" fica como ServiceCard.7
+import type { Services } from "../types/service";
 
-// Não esquece que os dados virão da API
+// Quero criar um 'mode' para este primeiro card. Por exemplo, quando estiver no mode "form" fica como
+// ServiceCardForm. E quando estiver no mode "default" fica como ServiceCard.
 
-export function ServiceCard() {
+export function ServiceCard({services}: Services) {
   return (
-    <Card className="p-6">
+    <Card className="p-6" key={services.id}>
       <div className="bg-linear-to-r from-[#E2A43C] to-[#AF7F2E] p-3 rounded-lg">
         <Scissors />
       </div>
       <div className="flex flex-row justify-between">
-        <h3>Tratamento capilar</h3>
-        <p>R$100</p>
+        <h3>{services.name}</h3>
+        <p>R${" "}{services.price}</p>
       </div>
-      <p>Corte, lavagem, hidratação e estilização</p>
-      <p>45min</p>
+      <p>{services.description}</p>
+      <p>{services.duration}</p>
     </Card>
   );
 }

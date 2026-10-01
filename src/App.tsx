@@ -4,7 +4,18 @@ import { StylistCard } from "./components/StylistCard";
 import { Step1 } from "./Form/step1";
 import { Footer } from "./components/Footer";
 
+import { useEffect } from "react";
+import { useServices } from "./hooks/useServices";
+
 export default function App() {
+  const { getServices, services } = useServices();
+
+  useEffect(() => {
+    getServices();
+  }, []);
+
+  console.log("SERVIÇOS: ", services)
+
   return (
     <div className="flex flex-col">
       <div className="flex flex-col p-8 items-start gap-y-5 min-h-screen justify-center">
@@ -34,10 +45,8 @@ export default function App() {
           <h1>Serviços feitos para você</h1>
 
           <div className="grid grid-cols-2 gap-4 mt-8 pr-20 pl-20">
-            <ServiceCard />
-            <ServiceCard />
-            <ServiceCard />
-            <ServiceCard />
+            {services &&
+              services?.map((service) => <ServiceCard key={service.id} services={service} />)}
           </div>
         </div>
         <div className="h-150 w-full bg-[#F2EADD] flex flex-col items-center pt-8">

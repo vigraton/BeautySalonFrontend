@@ -5,3 +5,7 @@ export interface Service {
   duration: string;
   price: number;
 }
+
+export interface Services {
+  services: Service
+}
