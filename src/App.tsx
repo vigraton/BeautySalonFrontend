@@ -14,8 +14,6 @@ export default function App() {
     getServices();
   }, []);
 
-  console.log("SERVIÇOS: ", services)
-
   return (
     <div className="flex flex-col">
       <div className="flex flex-col p-8 items-start gap-y-5 min-h-screen justify-center">
