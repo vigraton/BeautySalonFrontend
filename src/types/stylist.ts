@@ -4,3 +4,8 @@ export interface Stylist {
   specialistIn: string;
   description: string;
 }
+
+export interface Stylists {
+  stylists: Stylist
+  mode?: "default" | "form"
+}
