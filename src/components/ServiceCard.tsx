@@ -17,7 +17,7 @@ export function ServiceCard({ services, mode }: Services) {
   return (
     <>
       {mode === "default" ? (
-        <Card className="p-6" key={services.id}>
+        <Card className="p-6 cursor-pointer" key={services.id}>
           <div className="bg-linear-to-r from-[#E2A43C] to-[#AF7F2E] p-3 rounded-lg w-12">
             {icon}
           </div>
@@ -36,10 +36,10 @@ export function ServiceCard({ services, mode }: Services) {
           </div>
         </Card>
       ) : (
-        <Card className="p-4" key={services.id}>
+        <Card className="p-4 cursor-pointer" key={services.id}>
           <div className="flex flex-row items-center gap-4 text-nowrap">
             <div className="bg-linear-to-r from-[#E2A43C] to-[#AF7F2E] p-3 rounded-lg">
-              <Scissors size={16} />
+              {icon}
             </div>
             <div className="flex flex-row justify-between text-nowrap items-start">
               <div className="flex flex-col">
@@ -54,26 +54,5 @@ export function ServiceCard({ services, mode }: Services) {
         </Card>
       )}
     </>
-  );
-}
-
-export function ServiceCardForm() {
-  return (
-    <Card className="p-4">
-      <div className="flex flex-row items-center gap-4 text-nowrap">
-        <div className="bg-linear-to-r from-[#E2A43C] to-[#AF7F2E] p-3 rounded-lg">
-          <Scissors size={16} />
-        </div>
-        <div className="flex flex-row justify-between text-nowrap items-start">
-          <div className="flex flex-col">
-            <h3>Corte de cabelo</h3>
-            <p className="text-sm text-muted-foreground">
-              45 min - Consulta, lavagem, corte & estilização
-            </p>
-          </div>
-          <p>R$ 100,00</p>
-        </div>
-      </div>
-    </Card>
   );
 }

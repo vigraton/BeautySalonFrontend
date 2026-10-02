@@ -6,12 +6,15 @@ import { Footer } from "./components/Footer";
 
 import { useEffect } from "react";
 import { useServices } from "./hooks/useServices";
+import { useStylists } from "./hooks/useStylists";
 
 export default function App() {
   const { getServices, services } = useServices();
+  const { getStylists, stylists } = useStylists();
 
   useEffect(() => {
     getServices();
+    getStylists();
   }, []);
 
   return (
@@ -42,9 +45,9 @@ export default function App() {
           <h3 className="font-[Cormorant-Garamond] text-lg text-[#CE8E33]">
             Nosso menu
           </h3>
-          <h1 className="font-[IM-FELL-French-Canon]">
-            Serviços feitos para você
-          </h1>
+          <div className="font-[IM-FELL-French-Canon] text-lg ">
+            <h1>Serviços para você</h1>
+          </div>
 
           <div className="grid grid-cols-2 gap-4 mt-8 pr-20 pl-20">
             {services &&
@@ -61,11 +64,18 @@ export default function App() {
           <h4 className="font-[Cormorant-Garamond] text-lg text-[#CE8E33]">
             CONHEÇA NOSSO TIME
           </h4>
-          <h1>Quem você pode confiar</h1>
+          <div className="font-[IM-FELL-French-Canon] text-lg ">
+            <h1>Quem você pode confiar</h1>
+          </div>
           <div className="flex flex-row gap-4">
-            <StylistCard />
-            <StylistCard />
-            <StylistCard />
+            {stylists &&
+              stylists.map((stylist) => (
+                <StylistCard
+                  stylists={stylist}
+                  key={stylist.id}
+                  mode="default"
+                />
+              ))}
           </div>
         </div>
 
