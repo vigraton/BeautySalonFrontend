@@ -39,16 +39,28 @@ export default function App() {
 
       <section className="bg-[#FCF8F1]">
         <div className="p-14">
-          <h3>Nosso menu</h3>
-          <h1>Serviços feitos para você</h1>
+          <h3 className="font-[Cormorant-Garamond] text-lg text-[#CE8E33]">
+            Nosso menu
+          </h3>
+          <h1 className="font-[IM-FELL-French-Canon]">
+            Serviços feitos para você
+          </h1>
 
           <div className="grid grid-cols-2 gap-4 mt-8 pr-20 pl-20">
             {services &&
-              services?.map((service) => <ServiceCard key={service.id} services={service} />)}
+              services?.map((service) => (
+                <ServiceCard
+                  key={service.id}
+                  services={service}
+                  mode="default"
+                />
+              ))}
           </div>
         </div>
         <div className="h-150 w-full bg-[#F2EADD] flex flex-col items-center pt-8">
-          <h4>CONHEÇA NOSSO TIME</h4>
+          <h4 className="font-[Cormorant-Garamond] text-lg text-[#CE8E33]">
+            CONHEÇA NOSSO TIME
+          </h4>
           <h1>Quem você pode confiar</h1>
           <div className="flex flex-row gap-4">
             <StylistCard />
