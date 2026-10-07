@@ -1,4 +1,4 @@
-import type { Service } from "../types/service";
+import type { Service } from "../types";
 import { api } from "../service/api";
 import { useState } from "react";
 

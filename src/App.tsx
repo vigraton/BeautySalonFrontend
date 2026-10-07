@@ -1,7 +1,7 @@
 import { ArrowRight } from "lucide-react";
 import { ServiceCard } from "./components/ServiceCard";
 import { StylistCard } from "./components/StylistCard";
-import { Step1 } from "./Form/step1";
+import { Step4 } from "./Form/step4";
 import { Footer } from "./components/Footer";
 
 import { useEffect } from "react";
@@ -79,8 +79,16 @@ export default function App() {
           </div>
         </div>
 
+        <div className="flex flex-col items-center pt-8">
+          <h4 className="font-[Cormorant-Garamond] text-lg text-[#CE8E33]">
+            A G E N D A M E N T O
+          </h4>
+          <div className="font-[IM-FELL-French-Canon] text-lg ">
+            <h1>Faça sua reserva</h1>
+          </div>
+        </div>
         <div className="p-10 flex items-center justify-center ">
-          <Step1 />
+          <Step4 />
         </div>
       </section>
 

@@ -1,7 +1,7 @@
 import axios from "axios";
 import { type AppointmentSchema } from "../schema/appointment";
-import type { Service } from "../types/service";
-import type { Stylist } from "../types/stylist";
+import type { Service } from "../types";
+import type { Stylist } from "../types/index";
 
 const apiUrl = axios.create({
   baseURL: `${import.meta.env.VITE_API_ENDPOINT}`,

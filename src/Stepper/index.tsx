@@ -39,7 +39,7 @@ export function FormStepper<T extends BaseStepProps[]>({
         const status = getStepStatus(index);
 
         return (
-          <li>
+          <li key={step.id} data-status={status} className="group flex flex-col items-center gap-1">
             <div>
               <span>{index + 1}</span>
               <Check />

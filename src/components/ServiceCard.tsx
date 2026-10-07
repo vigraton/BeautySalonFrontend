@@ -1,6 +1,6 @@
-import { Card } from "../../components/ui/card";
+import { Card } from "./ui/card";
 import { Scissors, Footprints, Hand, Sparkles, Clock } from "lucide-react";
-import type { Services } from "../types/service";
+import type { Services } from "../types";
 
 export function ServiceCard({ services, mode, onClick }: Services) {
   const icon =
@@ -36,7 +36,10 @@ export function ServiceCard({ services, mode, onClick }: Services) {
           </div>
         </Card>
       ) : (
-        <Card className="p-4 cursor-pointer" key={services.id} onClick={onClick}>
+        <Card
+          className="p-4 cursor-pointer"
+          key={services.id}
+          onClick={onClick}>
           <div className="flex flex-row items-center gap-4 text-nowrap">
             <div className="bg-linear-to-r from-[#E2A43C] to-[#AF7F2E] p-3 rounded-lg">
               {icon}
