@@ -9,4 +9,5 @@ export interface Service {
 export interface Services {
   services: Service
   mode?: "default" | "form";
+  onClick?: () => void
 }

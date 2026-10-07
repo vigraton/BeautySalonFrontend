@@ -23,7 +23,7 @@ export function Step1() {
       <div className="grid grid-cols-2 gap-4">
         {services &&
           services.map((service) => (
-            <ServiceCard key={service.id} services={service} mode="form" />
+            <ServiceCard key={service.id} services={service} mode="form" onClick={() => {}}/>
           ))}
       </div>
     </FormLayout>
