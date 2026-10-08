@@ -50,19 +50,19 @@ export default function App() {
             <h1>Serviços para você</h1>
           </div>
 
-          {services.length > 0 ? (
-            services?.map((service) => (
-              <div className="grid grid-cols-2 gap-4 mt-8 pr-20 pl-20">
+          <div className="grid grid-cols-2 gap-4 mt-8 pr-20 pl-20">
+            {services.length > 0 ? (
+              services?.map((service) => (
                 <ServiceCard
                   key={service.id}
                   services={service}
                   mode="default"
                 />
-              </div>
-            ))
-          ) : (
-            <LoadingCard variant="sleep" />
-          )}
+              ))
+            ) : (
+              <LoadingCard variant="sleep" />
+            )}
+          </div>
         </div>
 
         <div className="h-150 w-full bg-[#F2EADD] flex flex-col items-center pt-8">
