@@ -1,6 +1,7 @@
 import { ArrowRight } from "lucide-react";
 import { ServiceCard } from "./components/ServiceCard";
 import { StylistCard } from "./components/StylistCard";
+import { LoadingCard } from "./components/LoadingCard";
 import { Step4 } from "./Form/step4";
 import { Footer } from "./components/Footer";
 
@@ -49,17 +50,21 @@ export default function App() {
             <h1>Serviços para você</h1>
           </div>
 
-          <div className="grid grid-cols-2 gap-4 mt-8 pr-20 pl-20">
-            {services &&
-              services?.map((service) => (
+          {services.length > 0 ? (
+            services?.map((service) => (
+              <div className="grid grid-cols-2 gap-4 mt-8 pr-20 pl-20">
                 <ServiceCard
                   key={service.id}
                   services={service}
                   mode="default"
                 />
-              ))}
-          </div>
+              </div>
+            ))
+          ) : (
+            <LoadingCard variant="sleep" />
+          )}
         </div>
+
         <div className="h-150 w-full bg-[#F2EADD] flex flex-col items-center pt-8">
           <h4 className="font-[Cormorant-Garamond] text-lg text-[#CE8E33]">
             CONHEÇA NOSSO TIME
@@ -68,14 +73,17 @@ export default function App() {
             <h1>Quem você pode confiar</h1>
           </div>
           <div className="flex flex-row gap-4">
-            {stylists &&
+            {stylists.length > 0 ? (
               stylists.map((stylist) => (
                 <StylistCard
                   stylists={stylist}
                   key={stylist.id}
                   mode="default"
                 />
-              ))}
+              ))
+            ) : (
+              <LoadingCard variant="sleep" />
+            )}
           </div>
         </div>
 

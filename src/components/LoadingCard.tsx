@@ -47,7 +47,7 @@ export function LoadingCard({
 
   return (
     <div
-      className="sketch-card"
+      className="sketch-card text-center place-items-center"
       data-variant={variant}
       data-selected={selected}
       role="status"
