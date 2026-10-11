@@ -29,5 +29,5 @@ export interface Stylists {
 export interface CardProps {
   items: Service | Stylist
   mode: "default" | "form"
-  onClick?: () => void
+  onClick?: () => void // setar os ids
 }

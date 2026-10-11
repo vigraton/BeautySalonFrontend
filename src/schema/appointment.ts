@@ -5,7 +5,7 @@ const serviceSchema = z.object({
   name: z.string(),
   description: z.string(),
   duration: z.string(),
-  price: z.string(),
+  price: z.number(),
 });
 
 const stylistSchema = z.object({
@@ -38,6 +38,37 @@ type Step2 = z.infer<typeof stylistSchema>;
 type Step3 = z.infer<typeof dateTimeSchema>;
 type Step4 = z.infer<typeof userDetailsSchemas>;
 type AppointmentSchema = z.infer<typeof appointmentSchema>;
+
+export const DEFAULT_VALUES = {
+  serviceSchema: {
+    id: "",
+    name: "",
+    description: "",
+    duration: "",
+    price: undefined,
+  },
+  stylistSchema: {
+    id: "",
+    name: "",
+    specialistIn: "",
+    description: "",
+  },
+  dateTimeSchema: {
+    date: "",
+  },
+  userDetailsSchemas: {
+    fullname: "",
+    email: "",
+    telephone: "",
+    observations: "",
+  },
+  appointmentSchema: {
+    step1: serviceSchema.pick({ id: true }),
+    step2: stylistSchema.pick({ id: true }),
+    step3: dateTimeSchema,
+    step4: userDetailsSchemas,
+  },
+};
 
 export {
   serviceSchema,

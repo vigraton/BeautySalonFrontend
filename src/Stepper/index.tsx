@@ -22,7 +22,7 @@ interface StepperProps<T extends BaseStepProps[]> {
   stepper: Stepper<T>;
 }
 
-export function FormStepper<T extends BaseStepProps[]>({
+export function StepperList<T extends BaseStepProps[]>({
   stepper,
 }: StepperProps<T>) {
   function getStepStatus(stepIndex: number) {
@@ -34,15 +34,27 @@ export function FormStepper<T extends BaseStepProps[]>({
   }
 
   return (
-    <ul>
+    <ul className="flex items-center gap-10">
       {stepper.steps.map((step, index) => {
         const status = getStepStatus(index);
 
         return (
-          <li key={step.id} data-status={status} className="group flex flex-col items-center gap-1">
-            <div>
-              <span>{index + 1}</span>
-              <Check />
+          <li
+            key={step.id}
+            data-status={status}
+            className="group flex flex-col items-center ">
+            <div
+              className={cn(
+                "size-10 flex items-center justify-center bg-[#FCF8F1] border border-[#E5DED4] rounded-full",
+                "group-data-[status=active]:bg-[#35251B] group-data-[status=active]:border-0",
+              )}>
+              <span
+                className={cn(
+                  "group-data-[status=success]:hidden block group-data-[status=active]:text-white",
+                )}>
+                {index + 1}
+              </span>
+              <Check className="hidden group-data-[status=success]:block" />
             </div>
             <p>{step.title}</p>
           </li>

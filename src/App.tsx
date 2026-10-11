@@ -2,7 +2,7 @@ import { ArrowRight } from "lucide-react";
 import { ServiceCard } from "./components/ServiceCard";
 import { StylistCard } from "./components/StylistCard";
 import { LoadingCard } from "./components/LoadingCard";
-import { Step4 } from "./Form/step4";
+import { FormPage } from "./Form/FormPage";
 import { Footer } from "./components/Footer";
 
 import { useEffect } from "react";
@@ -12,6 +12,34 @@ import { useStylists } from "./hooks/useStylists";
 export default function App() {
   const { getServices, services } = useServices();
   const { getStylists, stylists } = useStylists();
+
+  const bookings = [
+    {
+      id: 1,
+      title: "SERVIÇO",
+      description: "Manicure",
+    },
+    {
+      id: 2,
+      title: "PROFISSIONAL",
+      description: "Fulaninho",
+    },
+    {
+      id: 3,
+      title: "HORÁRIO",
+      description: "Sexta-feira, 24 de julho - 11:00",
+    },
+    {
+      id: 4,
+      title: "PREÇO",
+      description: "R$ 25,00",
+    },
+    {
+      id: 5,
+      title: "OBSERVAÇÕES",
+      description: "Nenhuma obeservação",
+    },
+  ];
 
   useEffect(() => {
     getServices();
@@ -91,12 +119,12 @@ export default function App() {
           <h4 className="font-[Cormorant-Garamond] text-lg text-[#CE8E33]">
             A G E N D A M E N T O
           </h4>
-          <div className="font-[IM-FELL-French-Canon] text-lg ">
+          <div className="font-[IM-FELL-French-Canon] text-lg">
             <h1>Faça sua reserva</h1>
           </div>
         </div>
         <div className="p-10 flex items-center justify-center ">
-          <Step4 />
+          <FormPage />
         </div>
       </section>
 

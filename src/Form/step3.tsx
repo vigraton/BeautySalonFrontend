@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { Calendar } from "../components/ui/calendar";
-import { FormLayout } from "./step1";
 
 export function Step3() {
   const [date, setDate] = useState<Date | undefined>(new Date());
@@ -61,25 +60,23 @@ export function Step3() {
   ];
 
   return (
-    <FormLayout>
-      <div className="flex flex-row min-w-full gap-4">
-        <Calendar
-          className="w-[30%] bg-[#FCF8F1] border border-[#E4DDD3] rounded-2xl p-6"
-          captionLayout="dropdown-months"
-          mode="single"
-          selected={date}
-          onSelect={setDate}
-        />
-        <div className="grid grid-cols-4 gap-4 w-full h-30">
-          {timetable.map((time) => (
-            <div
-              key={time.id}
-              className="bg-[#FCF8F1] cursor-pointer p-2 border border-[#E4DDD3] rounded-lg text-center">
-              {time.time}
-            </div>
-          ))}
-        </div>
+    <div className="flex flex-row min-w-full gap-4">
+      <Calendar
+        className="w-[30%] bg-[#FCF8F1] border border-[#E4DDD3] rounded-2xl p-6"
+        captionLayout="dropdown-months"
+        mode="single"
+        selected={date}
+        onSelect={setDate}
+      />
+      <div className="grid grid-cols-4 gap-4 w-full h-30">
+        {timetable.map((time) => (
+          <div
+            key={time.id}
+            className="bg-[#FCF8F1] cursor-pointer p-2 border border-[#E4DDD3] rounded-lg text-center">
+            {time.time}
+          </div>
+        ))}
       </div>
-    </FormLayout>
+    </div>
   );
 }
