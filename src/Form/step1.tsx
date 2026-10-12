@@ -1,7 +1,7 @@
 import { Card } from "../components/ui/card";
 import { ServiceCard } from "../components/ServiceCard";
 import { useServices } from "../hooks/useServices";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 export function FormLayout({ children }: { children: React.ReactNode }) {
   return (
@@ -13,6 +13,7 @@ export function FormLayout({ children }: { children: React.ReactNode }) {
 
 export function Step1() {
   const { getServices, services } = useServices();
+  const [selectedId, setSelectedId] = useState<String | undefined>(undefined);
 
   useEffect(() => {
     getServices();
@@ -26,7 +27,10 @@ export function Step1() {
             key={service.id}
             services={service}
             mode="form"
-            onClick={() => {}}
+            value={String(selectedId)}
+            onClick={() => {
+              setSelectedId(selectedId);
+            }}
           />
         ))}
     </div>

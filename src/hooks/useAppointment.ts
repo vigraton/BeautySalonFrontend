@@ -10,6 +10,7 @@ import {
   userDetailsSchemas,
   type AppointmentSchema,
 } from "../schema/appointment";
+import { useState } from "react";
 
 const { useStepper } = defineStepper([
   { id: "step1", title: "Serviço", schema: serviceSchema },
@@ -22,6 +23,7 @@ const { useStepper } = defineStepper([
 export function useAppointment() {
   const stepper = useStepper();
   const currentSchema = stepper.current.schema;
+  const [booking, setBooking] = useState<AppointmentSchema>();
 
   const form = useForm<AppointmentSchema>({
     resolver: currentSchema ? zodResolver(currentSchema as any) : undefined,
@@ -30,11 +32,12 @@ export function useAppointment() {
   async function createBooking(data: AppointmentSchema) {
     try {
       await api.post(data);
+      setBooking(data);
       console.log("Agendamento criado!");
     } catch (error) {
       console.error(`POST APPOINTMENT ERROR: ${error}`);
     }
   }
 
-  return { createBooking, form, useStepper, stepper };
+  return { createBooking, form, useStepper, stepper, booking };
 }

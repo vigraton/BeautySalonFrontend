@@ -7,9 +7,10 @@ export interface Service {
 }
 
 export interface Services {
-  services: Service
+  services: Service;
   mode?: "default" | "form";
-  onClick?: () => void
+  value?: string;
+  onClick?: () => void;
 }
 
 export interface Stylist {
@@ -20,14 +21,17 @@ export interface Stylist {
 }
 
 export interface Stylists {
-  stylists: Stylist
-  mode?: "default" | "form"
+  stylists: Stylist;
+  mode?: "default" | "form";
+  value?: string;
+  onClick?: () => void;
 }
 
-// Esse futuramente vai substituir Services e Stylists 
+// Esse futuramente vai substituir Services e Stylists
 // para ser usado nos Cards, que tbm se tornará um só.
 export interface CardProps {
-  items: Service | Stylist
-  mode: "default" | "form"
-  onClick?: () => void // setar os ids
+  items: Service | Stylist;
+  mode: "default" | "form";
+  value?: string;
+  onClick?: () => void; // setar os ids
 }

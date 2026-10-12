@@ -16,7 +16,8 @@ const stylistSchema = z.object({
 });
 
 const dateTimeSchema = z.object({
-  date: z.iso.datetime(),
+  date: z.date(),
+  time: z.iso.time() // deixar assim no back tambéééém
 });
 
 const userDetailsSchemas = z.object({
@@ -27,8 +28,8 @@ const userDetailsSchemas = z.object({
 });
 
 const appointmentSchema = z.object({
-  step1: serviceSchema.pick({ id: true }),
-  step2: stylistSchema.pick({ id: true }),
+  step1: serviceSchema,
+  step2: stylistSchema, // removi o pick para colocar o restantes da informações no card final do form
   step3: dateTimeSchema,
   step4: userDetailsSchemas,
 });
@@ -39,6 +40,7 @@ type Step3 = z.infer<typeof dateTimeSchema>;
 type Step4 = z.infer<typeof userDetailsSchemas>;
 type AppointmentSchema = z.infer<typeof appointmentSchema>;
 
+//Ainda nem tô usando isso O)-(O
 export const DEFAULT_VALUES = {
   serviceSchema: {
     id: "",

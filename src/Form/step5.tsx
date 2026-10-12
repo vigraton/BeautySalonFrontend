@@ -6,7 +6,7 @@ interface BookingCardProps {
 }
 
 interface BookingCards {
-  bookings: BookingCardProps[];
+  bookings?: BookingCardProps[]
   email: string;
 }
 
@@ -35,7 +35,7 @@ export function Step5({ bookings, email }: BookingCards) {
         </p>
       </div>
       <div className="grid grid-cols-3 w-full gap-4 mt-8">
-        {bookings.map((book) => (
+        {bookings?.map((book) => (
           <BookingCard title={book.title} description={book.description} />
         ))}
       </div>
