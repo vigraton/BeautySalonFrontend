@@ -6,6 +6,8 @@ import { Step5 } from "./step5";
 import { Form } from "react-hook-form";
 import { FormLayout } from "./step1";
 import { StepperList } from "../Stepper";
+import { Button } from "../components/ui/button";
+import { ArrowLeft, ArrowRight } from "lucide-react";
 
 import { useAppointment } from "../hooks/useAppointment";
 
@@ -24,6 +26,23 @@ export function FormPage() {
           step4: () => <Step4 />,
           step5: () => <Step5 />,
         })}
+
+        <div className="flex flex-row justify-between mt-8">
+          <Button
+            disabled={stepper.isFirst}
+            onClick={() => stepper.prev()}
+            variant="secondary"
+            className="bg-white cursor-pointer p-6 rounded-full hover:bg-accent text-muted-foreground">
+            <ArrowLeft />
+            Anterior
+          </Button>
+          <Button
+            onClick={() => stepper.next()}
+            className="bg-[#35251B] hover:bg-[#4c3425] cursor-pointer p-6 rounded-full">
+            Próximo
+            <ArrowRight />
+          </Button>
+        </div>
       </Form>
     </FormLayout>
   );
