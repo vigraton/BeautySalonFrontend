@@ -27,11 +27,16 @@ export interface Stylists {
   onClick?: () => void;
 }
 
+export interface Timetable {
+  id?: string
+  time: string
+}
+
 // Esse futuramente vai substituir Services e Stylists
 // para ser usado nos Cards, que tbm se tornará um só.
 export interface CardProps {
   items: Service | Stylist;
   mode: "default" | "form";
   value?: string;
-  onClick?: () => void; // setar os ids
+  onClick?: () => void;
 }

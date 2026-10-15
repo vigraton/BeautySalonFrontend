@@ -19,7 +19,10 @@ export function StepOne() {
   const [selectedId, setSelectedId] = useState<string | undefined>(undefined);
   const { control, setValue } = useFormContext<AppointmentSchema>();
 
-  console.log("SELECTED ID: ", selectedId);
+  console.log(
+    "SERVICE SELECTED: ",
+    services.find((s) => s.id === selectedId),
+  );
 
   useEffect(() => {
     getServices();
@@ -27,25 +30,32 @@ export function StepOne() {
 
   return (
     <div className="grid grid-cols-2 gap-4">
-      {services?.map((service) => (
-        <Controller
-          control={control}
-          name="step1.name"
-          render={({ field }) => (
-            <ServiceCard
-              {...field}
-              key={service.id}
-              services={service}
-              mode="form"
-              value={String(selectedId)}
-              onClick={() => {
-                setSelectedId(service.id);
-                setValue("step1.id", service.id);
-              }}
-            />
-          )}
-        />
-      ))}
+      {services.length ? (
+        services?.map((service) => (
+          <Controller
+            key={service.id}
+            control={control}
+            name="step1.name"
+            render={({ field }) => (
+              <ServiceCard
+                {...field}
+                key={service.id}
+                services={service}
+                mode="form"
+                value={String(selectedId)}
+                onClick={() => {
+                  setSelectedId(service.id);
+                  setValue("step1.id", service.id);
+                }}
+              />
+            )}
+          />
+        ))
+      ) : (
+        <div className="relative mt-4 text-center justify-center items-center font-medium">
+          <p>Carregando...</p>
+        </div>
+      )}
       <FormMessage />
     </div>
   );
