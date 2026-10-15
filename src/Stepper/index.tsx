@@ -18,11 +18,17 @@ interface BaseStepProps extends Step {
 // arrays de etapas com id e title seriam aceitos, desde que também atendam
 // ao tipo Step.
 
-interface StepperProps<T extends BaseStepProps[]> {
+interface StepperProps<T extends readonly BaseStepProps[]> {
   stepper: Stepper<T>;
 }
 
-export function StepperList<T extends BaseStepProps[]>({
+// No FormPage.tsx, o stepper vem de defineStepper como uma tupla readonly. 
+// Já aqui, StepperList o tipo genérico exige BaseStepProps[], um array mutável. 
+// O ts não permite passar um array readonly onde o código poderia, em princípio,
+// alterá-lo. Como StepperList apenas percorre as etapas, faz sentido aceitar
+// um coleção readonly. >w<
+
+export function StepperList<T extends readonly BaseStepProps[]>({
   stepper,
 }: StepperProps<T>) {
   function getStepStatus(stepIndex: number) {

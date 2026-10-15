@@ -2,6 +2,9 @@ import { Card } from "../components/ui/card";
 import { ServiceCard } from "../components/ServiceCard";
 import { useServices } from "../hooks/useServices";
 import { useEffect, useState } from "react";
+import type { AppointmentSchema } from "../schema/appointment";
+import { useFormContext, Controller } from "react-hook-form";
+import { FormMessage } from "../components/ui/form";
 
 export function FormLayout({ children }: { children: React.ReactNode }) {
   return (
@@ -11,9 +14,12 @@ export function FormLayout({ children }: { children: React.ReactNode }) {
   );
 }
 
-export function Step1() {
+export function StepOne() {
   const { getServices, services } = useServices();
-  const [selectedId, setSelectedId] = useState<String | undefined>(undefined);
+  const [selectedId, setSelectedId] = useState<string | undefined>(undefined);
+  const { control, setValue } = useFormContext<AppointmentSchema>();
+
+  console.log("SELECTED ID: ", selectedId);
 
   useEffect(() => {
     getServices();
@@ -21,18 +27,26 @@ export function Step1() {
 
   return (
     <div className="grid grid-cols-2 gap-4">
-      {services &&
-        services.map((service) => (
-          <ServiceCard
-            key={service.id}
-            services={service}
-            mode="form"
-            value={String(selectedId)}
-            onClick={() => {
-              setSelectedId(selectedId);
-            }}
-          />
-        ))}
+      {services?.map((service) => (
+        <Controller
+          control={control}
+          name="step1.name"
+          render={({ field }) => (
+            <ServiceCard
+              {...field}
+              key={service.id}
+              services={service}
+              mode="form"
+              value={String(selectedId)}
+              onClick={() => {
+                setSelectedId(service.id);
+                setValue("step1.id", service.id);
+              }}
+            />
+          )}
+        />
+      ))}
+      <FormMessage />
     </div>
   );
 }

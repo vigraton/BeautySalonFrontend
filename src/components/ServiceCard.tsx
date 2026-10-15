@@ -2,7 +2,7 @@ import { Card } from "./ui/card";
 import { Scissors, Footprints, Hand, Sparkles, Clock } from "lucide-react";
 import type { Services } from "../types";
 
-export function ServiceCard({ services, mode, onClick, value }: Services) {
+export function ServiceCard({ services, mode, onClick }: Services) {
   const icon =
     services.name === "Tratamento capilar" ? (
       <Scissors />

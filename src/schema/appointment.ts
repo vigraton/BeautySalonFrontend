@@ -2,7 +2,7 @@ import { z } from "zod";
 
 const serviceSchema = z.object({
   id: z.string(),
-  name: z.string(),
+  name: z.string().nonempty("Escolha um serviço"),
   description: z.string(),
   duration: z.string(),
   price: z.number(),
@@ -17,7 +17,7 @@ const stylistSchema = z.object({
 
 const dateTimeSchema = z.object({
   date: z.date(),
-  time: z.iso.time() // deixar assim no back tambéééém
+  time: z.iso.time()
 });
 
 const userDetailsSchemas = z.object({
@@ -29,7 +29,7 @@ const userDetailsSchemas = z.object({
 
 const appointmentSchema = z.object({
   step1: serviceSchema,
-  step2: stylistSchema, // removi o pick para colocar o restantes da informações no card final do form
+  step2: stylistSchema, 
   step3: dateTimeSchema,
   step4: userDetailsSchemas,
 });
