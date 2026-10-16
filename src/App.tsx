@@ -13,34 +13,6 @@ export default function App() {
   const { getServices, services } = useServices();
   const { getStylists, stylists } = useStylists();
 
-  const bookings = [
-    {
-      id: 1,
-      title: "SERVIÇO",
-      description: "Manicure",
-    },
-    {
-      id: 2,
-      title: "PROFISSIONAL",
-      description: "Fulaninho",
-    },
-    {
-      id: 3,
-      title: "HORÁRIO",
-      description: "Sexta-feira, 24 de julho - 11:00",
-    },
-    {
-      id: 4,
-      title: "PREÇO",
-      description: "R$ 25,00",
-    },
-    {
-      id: 5,
-      title: "OBSERVAÇÕES",
-      description: "Nenhuma obeservação",
-    },
-  ];
-
   useEffect(() => {
     getServices();
     getStylists();
