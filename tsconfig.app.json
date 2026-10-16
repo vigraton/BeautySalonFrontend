@@ -22,5 +22,5 @@
     "erasableSyntaxOnly": true,
     "noFallthroughCasesInSwitch": true
   },
-  "include": ["src", "components/ui/input.tsx"]
+  "include": ["src", "src/components/ui/input.tsx", "lib"]
 }

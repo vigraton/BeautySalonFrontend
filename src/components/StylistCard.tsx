@@ -1,7 +1,7 @@
-import { Card } from "../../components/ui/card";
-import type { Stylists } from "../types/stylist";
+import { Card } from "./ui/card";
+import type { Stylists } from "../types/index";
 
-export function StylistCard({ stylists, mode }: Stylists) {
+export function StylistCard({ stylists, mode, onClick }: Stylists) {
   return (
     <>
       {mode === "default" ? (
@@ -11,12 +11,16 @@ export function StylistCard({ stylists, mode }: Stylists) {
           <div className="bg-linear-to-r from-[#E2A43C] to-[#AF7F2E] p-3 rounded-full">
             <p>EM</p>
           </div>
-          <h3 className="text-2xl font-[IM-FELL-French-Canon]">{stylists.name}</h3>
+          <h3 className="text-2xl font-[IM-FELL-French-Canon]">
+            {stylists.name}
+          </h3>
           <p className="text-[#CE8E33]">{stylists.specialistIn}</p>
-          <p className="text-muted-foreground text-[13px]">{stylists.description}</p>
+          <p className="text-muted-foreground text-[13px]">
+            {stylists.description}
+          </p>
         </Card>
       ) : (
-        <Card className="p-4 cursor-pointer" key={stylists.id}>
+        <Card className="p-4 cursor-pointer" key={stylists.id} onClick={onClick}>
           <div className="flex flex-row items-center gap-4 text-nowrap">
             <div className="bg-linear-to-r from-[#E2A43C] to-[#AF7F2E] p-3 rounded-lg">
               <p>EM</p>

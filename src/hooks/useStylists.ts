@@ -1,6 +1,6 @@
-import type { Stylist } from "../types/stylist";
 import { useState } from "react";
 import { api } from "../service/api";
+import type { Stylist } from "../types";
 
 export function useStylists() {
   const [stylists, setStylists] = useState<Stylist[]>([]);

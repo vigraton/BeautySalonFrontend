@@ -1,7 +1,6 @@
 import axios from "axios";
 import { type AppointmentSchema } from "../schema/appointment";
-import type { Service } from "../types/service";
-import type { Stylist } from "../types/stylist";
+import type { Stylist, Service, Timetable } from "../types/index";
 
 const apiUrl = axios.create({
   baseURL: `${import.meta.env.VITE_API_ENDPOINT}`,
@@ -34,4 +33,18 @@ async function getStylists() {
   }
 }
 
-export const api = { post: postAppointment, getServices, getStylists };
+async function getTimetable() {
+  try {
+    const response = (await apiUrl.get<Timetable[]>("/timetable")).data;
+    return response;
+  } catch (error) {
+    throw error
+  }
+}
+
+export const api = {
+  post: postAppointment,
+  getServices,
+  getStylists,
+  getTimetable,
+};

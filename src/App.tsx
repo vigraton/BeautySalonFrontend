@@ -1,7 +1,8 @@
 import { ArrowRight } from "lucide-react";
 import { ServiceCard } from "./components/ServiceCard";
 import { StylistCard } from "./components/StylistCard";
-import { Step1 } from "./Form/step1";
+import { LoadingCard } from "./components/LoadingCard";
+import { FormPage } from "./Form/FormPage";
 import { Footer } from "./components/Footer";
 
 import { useEffect } from "react";
@@ -50,16 +51,20 @@ export default function App() {
           </div>
 
           <div className="grid grid-cols-2 gap-4 mt-8 pr-20 pl-20">
-            {services &&
+            {services.length > 0 ? (
               services?.map((service) => (
                 <ServiceCard
                   key={service.id}
                   services={service}
                   mode="default"
                 />
-              ))}
+              ))
+            ) : (
+              <LoadingCard variant="sleep" />
+            )}
           </div>
         </div>
+
         <div className="h-150 w-full bg-[#F2EADD] flex flex-col items-center pt-8">
           <h4 className="font-[Cormorant-Garamond] text-lg text-[#CE8E33]">
             CONHEÇA NOSSO TIME
@@ -68,19 +73,30 @@ export default function App() {
             <h1>Quem você pode confiar</h1>
           </div>
           <div className="flex flex-row gap-4">
-            {stylists &&
+            {stylists.length > 0 ? (
               stylists.map((stylist) => (
                 <StylistCard
                   stylists={stylist}
                   key={stylist.id}
                   mode="default"
                 />
-              ))}
+              ))
+            ) : (
+              <LoadingCard variant="sleep" />
+            )}
           </div>
         </div>
 
+        <div className="flex flex-col items-center pt-8">
+          <h4 className="font-[Cormorant-Garamond] text-lg text-[#CE8E33]">
+            A G E N D A M E N T O
+          </h4>
+          <div className="font-[IM-FELL-French-Canon] text-lg">
+            <h1>Faça sua reserva</h1>
+          </div>
+        </div>
         <div className="p-10 flex items-center justify-center ">
-          <Step1 />
+          <FormPage />
         </div>
       </section>
 
