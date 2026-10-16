@@ -2,36 +2,36 @@ import { z } from "zod";
 
 const serviceSchema = z.object({
   id: z.string(),
-  name: z.string().nonempty("Escolha um serviço"),
+  name: z.string(),
   description: z.string(),
   duration: z.string(),
   price: z.number(),
 });
 
 const stylistSchema = z.object({
-  id: z.string(),
+  id: z.string().nonoptional(),
   name: z.string(),
   specialistIn: z.string(),
   description: z.string(),
 });
 
 const dateTimeSchema = z.object({
-  date: z.date(),
-  time: z.iso.time()
+  date: z.iso.date().nonoptional("Escolha uma data"),
+  time: z.iso.time().nonoptional("Escolha um horário")
 });
 
 const userDetailsSchemas = z.object({
-  fullname: z.string(),
-  email: z.email(),
-  telephone: z.string(),
+  fullname: z.string().nonoptional("Informe seu nome"),
+  email: z.email().nonoptional("Informe seu email"),
+  telephone: z.string().nonoptional("Informe seu telefone"),
   observations: z.string().optional(),
 });
 
 const appointmentSchema = z.object({
-  step1: serviceSchema,
-  step2: stylistSchema, 
-  step3: dateTimeSchema,
-  step4: userDetailsSchemas,
+  step1: serviceSchema.nonoptional("Escolha um servio"),
+  step2: stylistSchema.nonoptional("Escolha um profissional"), 
+  step3: dateTimeSchema.nonoptional("Escolha uma data e horário"),
+  step4: userDetailsSchemas.nonoptional("Preencha seus dados"),
 });
 
 type Step1 = z.infer<typeof serviceSchema>;
@@ -39,38 +39,6 @@ type Step2 = z.infer<typeof stylistSchema>;
 type Step3 = z.infer<typeof dateTimeSchema>;
 type Step4 = z.infer<typeof userDetailsSchemas>;
 type AppointmentSchema = z.infer<typeof appointmentSchema>;
-
-//Ainda nem tô usando isso O)-(O
-export const DEFAULT_VALUES = {
-  serviceSchema: {
-    id: "",
-    name: "",
-    description: "",
-    duration: "",
-    price: undefined,
-  },
-  stylistSchema: {
-    id: "",
-    name: "",
-    specialistIn: "",
-    description: "",
-  },
-  dateTimeSchema: {
-    date: "",
-  },
-  userDetailsSchemas: {
-    fullname: "",
-    email: "",
-    telephone: "",
-    observations: "",
-  },
-  appointmentSchema: {
-    step1: serviceSchema.pick({ id: true }),
-    step2: stylistSchema.pick({ id: true }),
-    step3: dateTimeSchema,
-    step4: userDetailsSchemas,
-  },
-};
 
 export {
   serviceSchema,
