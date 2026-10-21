@@ -52,7 +52,7 @@ export function FormPage() {
             <Button
               type="submit"
               className="bg-[#35251B] hover:bg-[#4c3425] cursor-pointer p-6 rounded-full">
-              Próximo
+              {form.formState.isSubmitting ? "Carregando..." : "Próximo"}
               <ArrowRight />
             </Button>
           </div>

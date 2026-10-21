@@ -1,14 +1,6 @@
 import type { AppointmentResponse } from "../types/appointment";
-import { useAppointment } from "../hooks/useAppointment";
 
 export function BookingCard({ createdBooking }: AppointmentResponse) {
-  const { form } = useAppointment();
-
-  const values = form.getValues()
-  console.log("SERVICE: ", values.step1.id)
-  console.log("STYLIST: ", values.step1.id)
-  console.log("DAY: ", values.step1.id)
-  console.log("TIME: ", values.step1.id)
 
   return (
     <div className="grid grid-cols-3 w-full gap-4 mt-8">

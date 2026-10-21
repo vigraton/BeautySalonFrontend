@@ -1,7 +1,8 @@
 import { Card } from "./ui/card";
 import type { Stylists } from "../types/index";
+import { cn } from "../../lib/utils";
 
-export function StylistCard({ stylists, mode, onClick }: Stylists) {
+export function StylistCard({ stylists, mode, onClick, selected }: Stylists) {
   return (
     <>
       {mode === "default" ? (
@@ -20,7 +21,10 @@ export function StylistCard({ stylists, mode, onClick }: Stylists) {
           </p>
         </Card>
       ) : (
-        <Card className="p-4 cursor-pointer" key={stylists.id} onClick={onClick}>
+        <Card
+          className={cn(selected ? "bg-muted" : "", "p-4 cursor-pointer")}
+          key={stylists.id}
+          onClick={onClick}>
           <div className="flex flex-row items-center gap-4 text-nowrap">
             <div className="bg-linear-to-r from-[#E2A43C] to-[#AF7F2E] p-3 rounded-lg">
               <p>EM</p>

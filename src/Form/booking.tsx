@@ -14,7 +14,7 @@ export function Booking({ createdBooking }: AppointmentResponse) {
         </div>
         <p className="text-muted-foreground text-center">
           A confirmação do agendamento será enviada para o email
-          {createdBooking.userDetails.email}
+          {" "}{createdBooking.userDetails.email}
         </p>
       </div>
       <BookingCard createdBooking={createdBooking} />
