@@ -1,10 +1,11 @@
 import { Card } from "../components/ui/card";
 import { ServiceCard } from "../components/ServiceCard";
 import { useServices } from "../hooks/useServices";
-import { useEffect, useState } from "react";
-import type { AppointmentSchema } from "../schema/appointment";
-import { useFormContext, Controller } from "react-hook-form";
-import { FormMessage } from "../components/ui/form";
+import { useEffect } from "react";
+import { Controller, useFormContext } from "react-hook-form";
+import type {
+  NewAppointmentSchema,
+} from "../schema/newAppointments";
 
 export function FormLayout({ children }: { children: React.ReactNode }) {
   return (
@@ -14,49 +15,42 @@ export function FormLayout({ children }: { children: React.ReactNode }) {
   );
 }
 
-export function StepOne() {
+export function Step1() {
   const { getServices, services } = useServices();
-  const [selectedId, setSelectedId] = useState<string | undefined>(undefined);
-  const { control, setValue } = useFormContext<AppointmentSchema>();
-
-  console.log(
-    "SERVICE SELECTED: ",
-    services.find((s) => s.id === selectedId),
-  );
+  const { control } = useFormContext<NewAppointmentSchema>();
 
   useEffect(() => {
     getServices();
   }, []);
 
   return (
-    <div className="grid grid-cols-2 gap-4">
-      {services.length ? (
-        services?.map((service) => (
-          <Controller
-            key={service.id}
-            control={control}
-            name="step1.name"
-            render={({ field }) => (
+    <Controller
+      name="step1.id"
+      control={control}
+      render={({ field, fieldState }) => (
+        <>
+          <div className="grid grid-cols-2 gap-4">
+            {services?.map((service) => (
               <ServiceCard
                 {...field}
                 key={service.id}
                 services={service}
                 mode="form"
-                value={String(selectedId)}
+                selected={field.value === service.id}
                 onClick={() => {
-                  setSelectedId(service.id);
-                  setValue("step1.id", service.id);
+                  field.onChange(service.id);
+                  console.log("SELECTED SERVICE: ", service.name);
                 }}
               />
-            )}
-          />
-        ))
-      ) : (
-        <div className="relative mt-4 text-center justify-center items-center font-medium">
-          <p>Carregando...</p>
-        </div>
+            ))}
+          </div>
+          {fieldState.error && (
+            <p className="text-sm text-destructive">
+              {fieldState.error.message}
+            </p>
+          )}
+        </>
       )}
-      <FormMessage />
-    </div>
+    />
   );
 }
