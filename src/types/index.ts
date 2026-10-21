@@ -9,7 +9,6 @@ export interface Service {
 export interface Services {
   services: Service;
   mode?: "default" | "form";
-  value?: string;
   selected?: boolean
   onClick?: () => void;
 }
@@ -24,7 +23,6 @@ export interface Stylist {
 export interface Stylists {
   stylists: Stylist;
   mode?: "default" | "form";
-  value?: string;
   selected?: boolean
   onClick?: () => void;
 }
@@ -39,6 +37,6 @@ export interface Timetable {
 export interface CardProps {
   items: Service | Stylist;
   mode: "default" | "form";
-  value?: string;
+  selected?: boolean
   onClick?: () => void;
 }

@@ -1,5 +1,4 @@
 import axios from "axios";
-// import { type AppointmentSchema } from "../schema/appointment";
 import type { NewAppointmentSchema } from "../schema/newAppointments";
 import type { Stylist, Service, Timetable } from "../types/index";
 

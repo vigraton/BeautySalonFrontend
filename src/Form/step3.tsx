@@ -1,3 +1,4 @@
+import {cn} from "../../lib/utils"
 import { useEffect } from "react";
 import { useTimetable } from "../hooks/useTimetable";
 import { Calendar } from "../components/ui/calendar";
@@ -59,19 +60,26 @@ export function Step3() {
           control={control}
           render={({ field, fieldState }) => (
             <>
-              {timetable?.map((schedule) => (
-                <button
-                  {...field}
-                  value={selectedTime}
-                  onClick={() => {
-                    setValue("step3.time", String(schedule));
-                    console.log("SCHEDULE: ", String(schedule));
-                  }}
-                  key={String(schedule)}
-                  className="bg-[#FCF8F1] w-15 cursor-pointer p-2 border border-[#E4DDD3] rounded-lg text-center text-black">
-                  {String(schedule)}
-                </button>
-              ))}
+              {timetable?.map((schedule) => {
+                const selected = field.value === String(schedule);
+
+                return (
+                  <button
+                    {...field}
+                    value={selectedTime}
+                    onClick={() => {
+                      setValue("step3.time", String(schedule));
+                      console.log("SCHEDULE: ", String(schedule));
+                    }}
+                    key={String(schedule)}
+                    className={cn(
+                      "bg-[#FCF8F1] w-30 cursor-pointer p-2 border border-[#E4DDD3] rounded-lg text-center text-black",
+                      selected ? "bg-[#F6ECDA]" : "hover:bg-[#F6ECDA]",
+                    )}>
+                    {String(schedule)}
+                  </button>
+                );
+              })}
               {fieldState.error && (
                 <p className="text-sm text-destructive">
                   {fieldState.error.message}

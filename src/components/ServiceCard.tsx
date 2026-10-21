@@ -1,8 +1,9 @@
+import { cn } from "../../lib/utils";
 import { Card } from "./ui/card";
 import { Scissors, Footprints, Hand, Sparkles, Clock } from "lucide-react";
 import type { Services } from "../types";
 
-export function ServiceCard({ services, mode, onClick }: Services) {
+export function ServiceCard({ services, mode, onClick, selected }: Services) {
   const icon =
     services.name === "Tratamento capilar" ? (
       <Scissors />
@@ -37,7 +38,7 @@ export function ServiceCard({ services, mode, onClick }: Services) {
         </Card>
       ) : (
         <Card
-          className="p-4 cursor-pointer"
+          className={cn(selected ? "bg-muted" : "", "p-4 cursor-pointer")}
           key={services.id}
           onClick={onClick}>
           <div className="flex flex-row items-center gap-4 text-nowrap">
