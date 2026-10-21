@@ -1,51 +1,45 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { StylistCard } from "../components/StylistCard";
 import { useStylists } from "../hooks/useStylists";
-import type { AppointmentSchema } from "../schema/appointment";
+import type { NewStepTwo } from "../schema/newAppointments";
 import { Controller, useFormContext } from "react-hook-form";
 
 export function Step2() {
   const { getStylists, stylists } = useStylists();
-  const [selectedId, setSelectedId] = useState<string | undefined>(undefined);
-  const { control, setValue } = useFormContext<AppointmentSchema>();
-
-  console.log(
-    "STYLIST SELECTED: ",
-    stylists.find((s) => s.id === selectedId),
-  );
+  const { control } = useFormContext<NewStepTwo>();
 
   useEffect(() => {
     getStylists();
   }, []);
 
   return (
-    <div className="grid grid-cols-2 gap-4" key={selectedId}>
-      {stylists.length ? (
-        stylists?.map((stylist) => (
-          <Controller
-            key={stylist.id}
-            control={control}
-            name="step2.name"
-            render={({ field }) => (
+    <Controller
+      name="step2.id"
+      control={control}
+      render={({ field, fieldState }) => (
+        <>
+          <div className="grid grid-cols-2 gap-4">
+            {stylists?.map((stylist) => (
               <StylistCard
                 {...field}
                 key={stylist.id}
                 stylists={stylist}
                 mode="form"
-                value={String(selectedId)}
+                selected={field.value === stylist.id}
                 onClick={() => {
-                  setSelectedId(stylist.id);
-                  setValue("step2.id", stylist.id);
+                  field.onChange(stylist.id);
+                  console.log("SELECTED stylist: ", stylist.name);
                 }}
               />
-            )}
-          />
-        ))
-      ) : (
-        <div className="flex mt-4 text-center justify-center items-center font-medium">
-          <p>Carregando...</p>
-        </div>
+            ))}
+          </div>
+          {fieldState.error && (
+            <p className="text-sm text-destructive">
+              {fieldState.error.message}
+            </p>
+          )}
+        </>
       )}
-    </div>
+    />
   );
 }

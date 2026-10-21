@@ -10,6 +10,7 @@ export interface Services {
   services: Service;
   mode?: "default" | "form";
   value?: string;
+  selected?: boolean
   onClick?: () => void;
 }
 
@@ -24,6 +25,7 @@ export interface Stylists {
   stylists: Stylist;
   mode?: "default" | "form";
   value?: string;
+  selected?: boolean
   onClick?: () => void;
 }
 

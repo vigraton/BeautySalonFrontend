@@ -21,6 +21,7 @@ export interface AppointmentResponse {
     schedule: {
       id: string;
       day: string;
+      time: string
     };
     userDetails: {
       id: string;
