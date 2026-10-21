@@ -1,39 +1,48 @@
 import { z } from "zod";
 
 const serviceSchema = z.object({
-  id: z.string().min(1, "Escolha um serviço"),
+  step1: z.object({
+    id: z.string({ error: "Escolha um serviço" }).min(1),
+  }),
 });
+// Com name, description, duration e price comentados, o campo é validado normalmente, e a mensagem aparece!
+// Dentro do Step1 estou usando esse schema e não o de appointment. O mesmo vale para stylistSchma
 
 const stylistSchema = z.object({
-  id: z.string().min(1, "Escolha um profissional"),
+  step2: z.object({
+    id: z.string({ error: "Escolha um profissional" }).min(1),
+  }),
 });
 
 const dateTimeSchema = z.object({
-  date: z.iso.date().nonoptional("Escolha uma data"),
-  time: z.iso.time().nonoptional("Escolha um horário"),
+  step3: z.object({
+    day: z.iso.date({ error: "Escolha uma data" }),
+    time: z.iso.time({ error: "Escolha um horário" }),
+  }),
 });
 
 const userDetailsSchema = z.object({
-  fullname: z.string().min(1, "Informe seu nome"),
-  email: z.email().min(1, "Informe seu email"),
-  telephone: z.string().min(1, "Informe seu telefone"),
-  observations: z.string().optional(),
-});
-
-const appointmentSchema = z.object({
-  step1: serviceSchema,
-  step2: stylistSchema,
-  step3: dateTimeSchema,
-  step4: userDetailsSchema,
+  step4: z.object({
+    fullname: z.string({ error: "Informe seu nome" }).min(1),
+    email: z.email({ error: "Informe seu email" }).min(1, "Informe seu email"),
+    telephone: z
+      .string({ error: "Informe seu telefone" })
+      .min(1, "Informe seu telefone"),
+    observations: z.string().optional(),
+  }),
 });
 
 type NewStepOne = z.infer<typeof serviceSchema>;
 type NewStepTwo = z.infer<typeof stylistSchema>;
 type NewStepThree = z.infer<typeof dateTimeSchema>;
 type NewStepFour = z.infer<typeof userDetailsSchema>;
-type NewAppointmentSchema = z.infer<typeof appointmentSchema>;
 
-const DEFAULT_VALUES: NewAppointmentSchema = {
+type NewAppointmentSchema = NewStepOne &
+  NewStepTwo &
+  NewStepThree &
+  NewStepFour;
+
+const DEFAULT_VALUES = {
   step1: {
     id: "",
   },
@@ -41,7 +50,7 @@ const DEFAULT_VALUES: NewAppointmentSchema = {
     id: "",
   },
   step3: {
-    date: "",
+    day: "",
     time: "",
   },
   step4: {
@@ -61,7 +70,6 @@ export {
   type NewStepThree,
   userDetailsSchema,
   type NewStepFour,
-  appointmentSchema,
   type NewAppointmentSchema,
   DEFAULT_VALUES,
 };

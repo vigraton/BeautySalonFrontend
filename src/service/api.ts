@@ -1,12 +1,13 @@
 import axios from "axios";
-import { type AppointmentSchema } from "../schema/appointment";
+// import { type AppointmentSchema } from "../schema/appointment";
+import type { NewAppointmentSchema } from "../schema/newAppointments";
 import type { Stylist, Service, Timetable } from "../types/index";
 
 const apiUrl = axios.create({
   baseURL: `${import.meta.env.VITE_API_ENDPOINT}`,
 });
 
-async function postAppointment(data: AppointmentSchema) {
+async function postAppointment(data: NewAppointmentSchema) {
   try {
     const response = await apiUrl.post("/appointments", data);
     return response;

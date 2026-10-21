@@ -1,17 +1,12 @@
 import { useEffect } from "react";
 import { StylistCard } from "../components/StylistCard";
 import { useStylists } from "../hooks/useStylists";
-import type { AppointmentSchema } from "../schema/appointment";
+import type { NewStepTwo } from "../schema/newAppointments";
 import { Controller, useFormContext } from "react-hook-form";
 
 export function Step2() {
   const { getStylists, stylists } = useStylists();
-  const { control } = useFormContext<AppointmentSchema>();
-
-  // console.log(
-  //   "STYLIST SELECTED: ",
-  //   stylists.find((s) => s.id === selectedId),
-  // );
+  const { control } = useFormContext<NewStepTwo>();
 
   useEffect(() => {
     getStylists();
@@ -19,7 +14,7 @@ export function Step2() {
 
   return (
     <Controller
-      name="step1.id"
+      name="step2.id"
       control={control}
       render={({ field, fieldState }) => (
         <>

@@ -4,7 +4,8 @@ import { useServices } from "../hooks/useServices";
 import { useEffect } from "react";
 import { Controller, useFormContext } from "react-hook-form";
 import type {
-  NewAppointmentSchema,
+  // NewAppointmentSchema,
+  NewStepOne
 } from "../schema/newAppointments";
 
 export function FormLayout({ children }: { children: React.ReactNode }) {
@@ -17,7 +18,7 @@ export function FormLayout({ children }: { children: React.ReactNode }) {
 
 export function Step1() {
   const { getServices, services } = useServices();
-  const { control } = useFormContext<NewAppointmentSchema>();
+  const { control } = useFormContext<NewStepOne>();
 
   useEffect(() => {
     getServices();
