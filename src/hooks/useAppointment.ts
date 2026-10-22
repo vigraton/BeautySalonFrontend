@@ -23,15 +23,12 @@ const { useStepper } = defineStepper([
   { id: "step2", title: "Profissionais", schema: stylistSchema },
   { id: "step3", title: "Data & Hora", schema: dateTimeSchema },
   { id: "step4", title: "Detalhes", schema: userDetailsSchema },
-  { id: "booking", title: "Agendamento", schema: undefined },
 ]);
 
 export function useAppointment() {
   const stepper = useStepper();
   const currentSchema = stepper.current.schema;
   const [booked, setBooked] = useState<CreatedBooking | null>(null);
-
-  const [newBooking, setNewBooking] = useState<NewAppointmentSchema>();
 
   const form = useForm<NewAppointmentSchema>({
     resolver: currentSchema ? zodResolver(currentSchema as any) : undefined,
@@ -42,7 +39,6 @@ export function useAppointment() {
     try {
       const response = await api.post(data);
       setBooked(response.data.createdBooking);
-      setNewBooking(response.data);
       console.log("Agendamento criado: ", data);
 
       return response.data.createdBooking;
@@ -57,7 +53,6 @@ export function useAppointment() {
     form,
     useStepper,
     stepper,
-    booked, // uso no Step5 - na hora de mostrar o agendamento pronto
-    newBooking,
+    booked,
   };
 }
