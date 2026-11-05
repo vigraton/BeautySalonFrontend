@@ -20,9 +20,8 @@ export function FormPage() {
         return;
       }
       await createBooking(form.getValues());
-      
     } catch (error) {
-      console.error("HANDLE SUBMIT ERROR: ",error);
+      console.error("HANDLE SUBMIT ERROR: ", error);
     }
   }
 
@@ -32,13 +31,19 @@ export function FormPage() {
 
       <Form {...form}>
         <form onSubmit={form.handleSubmit(handleSubmit)}>
-          {stepper.match({
-            step1: () => <Step1 />,
-            step2: () => <Step2 />,
-            step3: () => <Step3 />,
-            step4: () => <Step4 />,            
-            booking: () => (booked ? <Booking createdBooking={booked} /> : null),
-          })}
+          {stepper.isComplete() || booked ? (
+            <Booking createdBooking={booked!} />
+          ) : (
+            <>
+              {stepper.match({
+                step1: () => <Step1 />,
+                step2: () => <Step2 />,
+                step3: () => <Step3 />,
+                step4: () => <Step4 />,
+              })}
+            </>
+          )}
+
           <div className="flex flex-row justify-between mt-8">
             <Button
               type="button"

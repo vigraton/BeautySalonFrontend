@@ -46,7 +46,7 @@ export function Step1() {
             ))}
           </div>
           {fieldState.error && (
-            <p className="text-sm text-destructive">
+            <p className="text-sm font-medium text-destructive text-center pt-4">
               {fieldState.error.message}
             </p>
           )}

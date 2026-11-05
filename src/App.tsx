@@ -21,9 +21,17 @@ export default function App() {
   return (
     <div className="flex flex-col">
       <div className="flex flex-col p-8 items-start gap-y-5 min-h-screen justify-center">
-        <h3 className="flex flex-row gap-4 text-white">CABELO UNHAS PELE</h3>
-        <div className="text-white">
-          <h1>A arte de sentir bela</h1>
+        <h3 className="flex flex-row items-center gap-4 font-[Cormorant-Garamond] text-lg text-[#CE8E33]">
+          CABELO <span className="h-1.5 w-1.5 rounded-full bg-[#CE8E33]" />{" "}
+          UNHAS <span className="h-1.5 w-1.5 rounded-full bg-[#CE8E33]" /> PELE
+        </h3>
+
+        <div className="text-white font-[IM-FELLFrench-Canon] text-lg">
+          <h1>
+            A arte de sentir
+            <br />
+            <span className="text-[#CE8E33]">bela</span>
+          </h1>
         </div>
         <p className="text-white">
           Potter ipsum wand elf parchment wingardium. Parchment orbs

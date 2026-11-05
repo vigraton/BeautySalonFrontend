@@ -1,4 +1,4 @@
-import {cn} from "../../lib/utils"
+import { cn } from "../../lib/utils";
 import { useEffect } from "react";
 import { useTimetable } from "../hooks/useTimetable";
 import { Calendar } from "../components/ui/calendar";
@@ -25,7 +25,7 @@ export function Step3() {
         name="step3.day"
         control={control}
         render={({ field, fieldState }) => (
-          <>
+          <div>
             <Calendar
               {...field}
               className=" bg-[#FCF8F1] border border-[#E4DDD3] rounded-2xl p-6"
@@ -45,21 +45,21 @@ export function Step3() {
             />
             <>
               {fieldState.error && (
-                <p className="text-sm text-destructive">
+                <p className="text-sm font-medium text-destructive text-center pt-2">
                   {fieldState.error.message}
                 </p>
               )}
             </>
-          </>
+          </div>
         )}
       />
 
-      <div className="grid grid-cols-4 gap-4 w-full h-30">
-        <Controller
-          name="step3.time"
-          control={control}
-          render={({ field, fieldState }) => (
-            <>
+      <Controller
+        name="step3.time"
+        control={control}
+        render={({ field, fieldState }) => (
+          <div className="flex flex-col">
+            <div className="grid grid-cols-4 gap-4 w-full h-30">
               {timetable?.map((schedule) => {
                 const selected = field.value === String(schedule);
 
@@ -80,15 +80,15 @@ export function Step3() {
                   </button>
                 );
               })}
-              {fieldState.error && (
-                <p className="text-sm text-destructive">
-                  {fieldState.error.message}
-                </p>
-              )}
-            </>
-          )}
-        />
-      </div>
+            </div>
+            {fieldState.error && (
+              <p className="text-sm font-medium text-destructive text-center pt-4">
+                {fieldState.error.message}
+              </p>
+            )}
+          </div>
+        )}
+      />
     </div>
   );
 }
